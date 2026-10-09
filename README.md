@@ -39,3 +39,19 @@ Test the connection with:
 ```console
 python -m sandbox llm
 ```
+
+Design Goal
+
+My goal for Season 3 is to make the village feel more alive by giving villagers different jobs and routines while allowing them to acknowledge other characters. Each villager has an assigned role and a destination, and villagers wave when they see someone. I want these behaviors to make the villagers feel like individuals who share the same village rather than characters that all behave identically.
+
+Design Reflection
+
+For my agent, I chose to assign each villager a role based on its player number. Some villagers travel to the pump, benches, crops, or crates, while others wander between available destinations or return toward their home doorway. This gives the village a variety of activities instead of having every villager follow the same routine. I used breadth-first search (BFS) to find reachable cells and build routes through the village. The agent checks which cells it can safely enter and follows the resulting route toward its destination. This approach helps villagers navigate around obstacles instead of simply walking directly toward a target. I also added route tracking so that a villager can continue following its route between decisions.
+
+Another behavior I added is waving when someone is visible. The agent uses the people.seen(observation) function to decide whether to use the "wave" expression. This provides a simple way for villagers to acknowledge other characters. Villagers assigned to benches can also use a nearby bench when it is available. One tradeoff is that each villager follows a relatively simple routine. Although the roles create variety, the villagers do not have a complete relationship system or conversations with one another. Their waving behavior is also based on whether someone is visible, rather than on a specific friendship or relationship. The route system can help with navigation, but villagers may still pause or encounter difficulties when moving around other characters.
+
+Compared with my earlier approach, I focused on making movement more organized by using reachable cells and route tracking. I also wanted the villagers' behavior to be easier to understand by giving each one a specific responsibility. If I had more time, I would improve how villagers respond to one another, make their movement look more natural, and develop more meaningful interactions that show relationships between characters.
+
+AI-Use Reflection
+
+I used ChatGPT to help me understand and improve my Python agent. I asked for help with route tracking, waving behavior, and organizing my code. Using AI helped me understand possible changes to my agent and identify areas where its movement and behavior could be improved. However, suggestions did not always solve the pauses I observed during gameplay, which helped me recognize that changing the agent may not fix every issue in the simulation. I reviewed the suggested code in relation to my existing implementation and used gameplay observations to evaluate its behavior. This experience showed me that AI can be useful for troubleshooting and explaining code, but I still need to test the results and make sure the implementation matches the assignment requirements.
